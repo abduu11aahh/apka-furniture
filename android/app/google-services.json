@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "219897550965",
+    "project_id": "apka-furniture-28144",
+    "storage_bucket": "apka-furniture-28144.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:219897550965:android:6bd388a0e76e8ca39b003c",
+        "android_client_info": {
+          "package_name": "com.frontend.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClZmPYj7p86CA2x7xM33Ah0ty3wdMhVqk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
