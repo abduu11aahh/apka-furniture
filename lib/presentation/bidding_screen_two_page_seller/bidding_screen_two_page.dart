@@ -1,6 +1,6 @@
 import '../bidding_screen_two_page/widgets/biddingscreenlist_item_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend/core/app_export.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
 
 // ignore_for_file: must_be_immutable
 class BiddingScreenSellerTwoPage extends StatefulWidget {
@@ -50,7 +50,8 @@ class BiddingScreenSellerTwoPageState extends State<BiddingScreenSellerTwoPage>
               height: 15.v,
             );
           },
-          itemCount: 1,
+          //itemCount: 1,
+          itemCount: 0,
           itemBuilder: (context, index) {
             return BiddingscreenlistItemWidget();
           },

@@ -1,14 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/AuthBloc/auth_cubit.dart';
-import 'package:frontend/bloc/ProposalBloc/proposal_cubit.dart';
-import 'package:frontend/bloc/ProposalBloc/proposal_state.dart';
-import 'package:frontend/bloc/cartBloc/cart_cubit.dart';
-import 'package:frontend/bloc/cartBloc/cart_state.dart';
-import 'package:frontend/presentation/proposal_screen_dialog/proposal_screen_dialog.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
+import 'package:Apka_Furniture/bloc/ProposalBloc/proposal_cubit.dart';
+import 'package:Apka_Furniture/bloc/ProposalBloc/proposal_state.dart';
+import 'package:Apka_Furniture/bloc/cartBloc/cart_cubit.dart';
+import 'package:Apka_Furniture/bloc/cartBloc/cart_state.dart';
+import 'package:Apka_Furniture/presentation/proposal_screen_dialog/proposal_screen_dialog.dart';
 
 import '../bidding_screen_one_page/widgets/biddingscreenone_item_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend/core/app_export.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
 
 class BiddingScreenOnePage extends StatefulWidget {
   const BiddingScreenOnePage({Key? key}) : super(key: key);

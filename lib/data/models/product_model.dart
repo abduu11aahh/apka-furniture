@@ -13,6 +13,25 @@ class ProductModel {
     required this.details,
   });
 
+  // Override == for object equality
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductModel &&
+          runtimeType == other.runtimeType &&
+          productId == other.productId &&
+          title == other.title &&
+          category == other.category &&
+          details == other.details;
+
+  // Override hashCode to match the changes in == implementation
+  @override
+  int get hashCode =>
+      productId.hashCode ^
+      title.hashCode ^
+      category.hashCode ^
+      details.hashCode;
+
   // Convert to JSON
   Map<String, dynamic> toJson() => {
         'productId':

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/core/app_export.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
 import 'widgets/category_widget.dart';
-import 'package:frontend/widgets/app_bar/appbar_title.dart';
-import 'package:frontend/widgets/custom_elevated_button.dart';
-import 'package:frontend/widgets/custom_text_form_field.dart';
+import 'package:Apka_Furniture/widgets/app_bar/appbar_title.dart';
+import 'package:Apka_Furniture/widgets/custom_elevated_button.dart';
+import 'package:Apka_Furniture/widgets/custom_text_form_field.dart';
 import 'dart:ui';
 
 class BlurBuyerCreatingNewItemScreen extends StatelessWidget {

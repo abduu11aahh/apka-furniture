@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/bloc/AuthBloc/auth_cubit.dart';
-import 'package:frontend/bloc/QuoteBloc/quote_cubit.dart';
-import 'package:frontend/bloc/QuoteBloc/quote_state.dart';
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/presentation/cart_screen_one_page/cart_screen_one_page.dart';
-import 'package:frontend/presentation/cart_screen_two_page/cart_screen_two_page.dart';
-import 'package:frontend/presentation/cart_screen_two_page/widgets/cartscreentwo_quotedItem_widget.dart';
-import 'package:frontend/widgets/app_bar/appbar_title.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
+import 'package:Apka_Furniture/bloc/QuoteBloc/quote_cubit.dart';
+import 'package:Apka_Furniture/bloc/QuoteBloc/quote_state.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/presentation/cart_screen_one_page/cart_screen_one_page.dart';
+import 'package:Apka_Furniture/presentation/cart_screen_two_page/cart_screen_two_page.dart';
+import 'package:Apka_Furniture/presentation/cart_screen_two_page/widgets/cartscreentwo_quotedItem_widget.dart';
+import 'package:Apka_Furniture/widgets/app_bar/appbar_title.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/bottomBarBloc/bottomBarCubit.dart';
-import 'package:frontend/presentation/user_home_screen/user_home_screen.dart';
+import 'package:Apka_Furniture/bloc/bottomBarBloc/bottomBarCubit.dart';
+import 'package:Apka_Furniture/presentation/user_home_screen/user_home_screen.dart';
 
 class CartScreen extends StatefulWidget {
-  const CartScreen({Key? key}) : super(key: key);
+  final int initialTabIndex;
+
+  const CartScreen({Key? key, this.initialTabIndex = 0}) : super(key: key);
 
   @override
   CartScreenState createState() => CartScreenState();
@@ -25,7 +27,8 @@ class CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    tabviewController = TabController(length: 2, vsync: this);
+    tabviewController = TabController(
+        length: 2, vsync: this, initialIndex: widget.initialTabIndex);
   }
 
   @override
@@ -98,7 +101,7 @@ class CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                 dividerHeight: 5.v,
                 tabs: [
                   Tab(child: Text('Items')),
-                  Tab(child: Text('Quoted Items'))
+                  Tab(child: Text('Requested Items'))
                 ]),
           ),
         ),
@@ -106,7 +109,20 @@ class CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
         toolbarHeight: 69.v,
         leading: InkWell(
           onTap: () {
+            // var isPreviousPageProductDetail =
+            //     ModalRoute.of(context)?.settings.arguments;
+            // if (isPreviousPageProductDetail is bool &&
+            //     isPreviousPageProductDetail) {
+            // Navigator.of(context).popUntil((route) => route.isFirst);}
+            // Navigator.of(context).popUntil((route) => route.isFirst);
             context.read<BottomBarCubit>().setCurrentTab(0, UserHomeScreen());
+            // Navigator.of(context).popUntil((route) => route.isFirst);
+            // Navigator.pushReplacementNamed(context, AppRoutes.bottomBarScreen);
+
+            // context.read<BottomBarCubit>().setCurrentTab(0, UserHomeScreen());
+            // Navigator.of(context).popUntil((route) =>
+            //     route is MaterialPageRoute &&
+            //     route.settings.name == AppRoutes.bottomBarScreen);
           },
           highlightColor: Colors.transparent,
           child: Container(

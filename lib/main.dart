@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:frontend/bloc/BidBloc/bid_cubit.dart';
-import 'package:frontend/bloc/NotificationBloc/notification_cubit.dart';
-import 'package:frontend/bloc/ProposalBloc/proposal_cubit.dart';
-import 'package:frontend/bloc/QuoteBloc/quote_cubit.dart';
-import 'package:frontend/bloc/cartBloc/cart_cubit.dart';
-import 'package:frontend/bloc/productBloc/product_cubit.dart';
-import 'package:frontend/widgets/seller_bottom_bar.dart';
+import 'package:Apka_Furniture/bloc/BidBloc/bid_cubit.dart';
+import 'package:Apka_Furniture/bloc/NotificationBloc/notification_cubit.dart';
+import 'package:Apka_Furniture/bloc/ProposalBloc/proposal_cubit.dart';
+import 'package:Apka_Furniture/bloc/QuoteBloc/quote_cubit.dart';
+import 'package:Apka_Furniture/bloc/cartBloc/cart_cubit.dart';
+import 'package:Apka_Furniture/bloc/productBloc/product_cubit.dart';
+import 'package:Apka_Furniture/widgets/seller_bottom_bar.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/AuthBloc/auth_cubit.dart';
-import 'package:frontend/bloc/AuthBloc/auth_sate.dart';
-import 'package:frontend/presentation/buyer_and_seller_screen/buyer_and_seller_screen.dart';
-import 'package:frontend/presentation/splash_screen/splash_screen.dart';
-import 'package:frontend/theme/theme_helper.dart';
-import 'package:frontend/routes/app_routes.dart';
-import 'package:frontend/bloc/bottomBarBloc/bottomBarCubit.dart';
-import 'package:frontend/bloc/bottomBarBloc/sellerBottomBarCubit.dart';
-import 'package:frontend/widgets/custom_bottom_app_bar.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_sate.dart';
+import 'package:Apka_Furniture/presentation/buyer_and_seller_screen/buyer_and_seller_screen.dart';
+import 'package:Apka_Furniture/presentation/splash_screen/splash_screen.dart';
+import 'package:Apka_Furniture/theme/theme_helper.dart';
+import 'package:Apka_Furniture/routes/app_routes.dart';
+import 'package:Apka_Furniture/bloc/bottomBarBloc/bottomBarCubit.dart';
+import 'package:Apka_Furniture/bloc/bottomBarBloc/sellerBottomBarCubit.dart';
+import 'package:Apka_Furniture/widgets/custom_bottom_app_bar.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
@@ -99,7 +99,7 @@ class MyApp extends StatelessWidget {
     });
 
     return MaterialApp(
-      title: 'frontend',
+      title: 'Apka_Furniture',
       debugShowCheckedModeBanner: false,
       //initialRoute: AppRoutes.splashScreen,
       home: BlocBuilder<AuthCubit, AuthState>(

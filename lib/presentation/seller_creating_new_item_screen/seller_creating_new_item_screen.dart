@@ -3,16 +3,16 @@ import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/AuthBloc/auth_cubit.dart';
-import 'package:frontend/bloc/productBloc/product_cubit.dart';
-import 'package:frontend/bloc/productBloc/product_state.dart';
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/widgets/app_bar/appbar_title.dart';
-import 'package:frontend/widgets/custom_elevated_button.dart';
-import 'package:frontend/widgets/custom_text_form_field.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
+import 'package:Apka_Furniture/bloc/productBloc/product_cubit.dart';
+import 'package:Apka_Furniture/bloc/productBloc/product_state.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/widgets/app_bar/appbar_title.dart';
+import 'package:Apka_Furniture/widgets/custom_elevated_button.dart';
+import 'package:Apka_Furniture/widgets/custom_text_form_field.dart';
 import 'package:image_picker/image_picker.dart';
 import 'widgets/category_widget.dart';
-import 'package:frontend/presentation/blur_buyer_creating_new_item_screen/blur_buyer_creating_new_item_screen.dart';
+import 'package:Apka_Furniture/presentation/blur_buyer_creating_new_item_screen/blur_buyer_creating_new_item_screen.dart';
 
 // ignore_for_file: must_be_immutable
 
@@ -251,16 +251,21 @@ class _SellerCreatingNewItemScreenState
               )),
           Padding(
               padding: EdgeInsets.only(left: 50.h, bottom: 6.v),
-              child: Column(children: [
-                CustomImageView(
-                    imagePath: ImageConstant.imgGroupOnprimarycontainer25x25,
-                    height: 25.v,
-                    width: 27.h),
-                SizedBox(height: 9.v),
-                Opacity(
-                    opacity: 0.75,
-                    child: Text("Drive", style: theme.textTheme.labelLarge))
-              ]))
+              child: GestureDetector(
+                onTap: () {
+                  _onTapCamera(context);
+                },
+                child: Column(children: [
+                  CustomImageView(
+                      imagePath: ImageConstant.imgSettings,
+                      height: 25.v,
+                      width: 27.h),
+                  SizedBox(height: 9.v),
+                  Opacity(
+                      opacity: 0.75,
+                      child: Text("Camera", style: theme.textTheme.labelLarge))
+                ]),
+              ))
         ]));
   }
 
@@ -478,6 +483,26 @@ class _SellerCreatingNewItemScreenState
     }
   }
 
+  Future<void> _onTapCamera(BuildContext context) async {
+    List<XFile> selectedImages = [];
+    int i = 0;
+    while (i < 5) {
+      final pickedFile =
+          await ImagePicker().pickImage(source: ImageSource.camera);
+      if (pickedFile == null) {
+        // User canceled image capture
+        break;
+      }
+
+      //final imagePath = pickedFile.path;
+      selectedImages.add(pickedFile);
+      i++;
+    }
+    if (selectedImages.isNotEmpty) {
+      context.read<ProductCubit>().selectImages(selectedImages);
+    }
+  }
+
   /// Navigates to the userHomeScreen when the action is triggered.
   onTapUpload(BuildContext context) {
     final state = context.read<ProductCubit>().state;
@@ -493,9 +518,19 @@ class _SellerCreatingNewItemScreenState
       String token = context.read<AuthCubit>().getToken();
       context.read<ProductCubit>().submitProduct(token);
     } else {
+      String snackBarContent = '';
+      if (selectedCategory == '') {
+        snackBarContent = 'Please select the category!';
+      } else if (itemTitleController.text == '') {
+        snackBarContent = 'Please fill the title of the product!';
+      } else if (itemDetailController.text == '') {
+        snackBarContent = 'Please fill the details of the product!';
+      } else {
+        snackBarContent = 'Please upload images for the product!';
+      }
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Please fill each field!'),
+          content: Text('$snackBarContent'),
         ),
       );
     }

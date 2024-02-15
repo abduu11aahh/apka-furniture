@@ -1,4 +1,4 @@
-import 'package:frontend/data/models/proposal_model.dart';
+import 'package:Apka_Furniture/data/models/proposal_model.dart';
 
 abstract class ProposalState {}
 

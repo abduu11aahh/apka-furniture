@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/bloc/bottomBarBloc/sellerBottomBarCubit.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/bloc/bottomBarBloc/sellerBottomBarCubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/presentation/bidding_screen/bidding_screen.dart';
-import 'package:frontend/presentation/bidding_screen_seller/bidding_screen.dart';
-import 'package:frontend/presentation/more_screen/more_screen.dart';
-import 'package:frontend/presentation/order_screen/order_screen.dart';
-import 'package:frontend/presentation/seller_home_screen/seller_home_screen.dart';
+import 'package:Apka_Furniture/presentation/bidding_screen/bidding_screen.dart';
+import 'package:Apka_Furniture/presentation/bidding_screen_seller/bidding_screen.dart';
+import 'package:Apka_Furniture/presentation/more_screen/more_screen.dart';
+import 'package:Apka_Furniture/presentation/order_screen/order_screen.dart';
+import 'package:Apka_Furniture/presentation/seller_home_screen/seller_home_screen.dart';
 
 class SellerBottomAppBar extends StatefulWidget {
   @override

@@ -1,5 +1,5 @@
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/widgets/custom_elevated_button.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 
 class BuyerAndSellerScreen extends StatelessWidget {

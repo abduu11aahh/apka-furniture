@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/AuthBloc/auth_cubit.dart';
-import 'package:frontend/bloc/QuoteBloc/quote_cubit.dart';
-import 'package:frontend/bloc/QuoteBloc/quote_state.dart';
-import 'package:frontend/core/app_export.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
+import 'package:Apka_Furniture/bloc/QuoteBloc/quote_cubit.dart';
+import 'package:Apka_Furniture/bloc/QuoteBloc/quote_state.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
 import '../cart_screen_two_page/widgets/cartscreentwo_quoteditem_widget.dart';
 
 // ignore_for_file: must_be_immutable

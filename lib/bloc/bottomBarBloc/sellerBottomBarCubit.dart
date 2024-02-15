@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:frontend/core/app_export.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend/presentation/seller_home_screen/seller_home_screen.dart';
+import 'package:Apka_Furniture/presentation/seller_home_screen/seller_home_screen.dart';
 
 class SellerBottomBarState {
   final int currentTab;

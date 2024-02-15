@@ -1,4 +1,4 @@
-import 'package:frontend/data/models/quote_model.dart';
+import 'package:Apka_Furniture/data/models/quote_model.dart';
 
 abstract class QuoteState {}
 

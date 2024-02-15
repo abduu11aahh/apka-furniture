@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/bloc/AuthBloc/auth_cubit.dart';
-import 'package:frontend/bloc/AuthBloc/auth_sate.dart';
-import 'package:frontend/bloc/bottomBarBloc/sellerBottomBarCubit.dart';
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/presentation/buyer_and_seller_screen/buyer_and_seller_screen.dart';
-import 'package:frontend/presentation/seller_home_screen/seller_home_screen.dart';
-//import 'package:frontend/presentation/notification_screen_one_page/notification_screen_one_page.dart';
-import 'package:frontend/widgets/app_bar/appbar_title.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_sate.dart';
+import 'package:Apka_Furniture/bloc/bottomBarBloc/sellerBottomBarCubit.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/presentation/buyer_and_seller_screen/buyer_and_seller_screen.dart';
+import 'package:Apka_Furniture/presentation/seller_home_screen/seller_home_screen.dart';
+//import 'package:Apka_Furniture/presentation/notification_screen_one_page/notification_screen_one_page.dart';
+import 'package:Apka_Furniture/widgets/app_bar/appbar_title.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/bottomBarBloc/bottomBarCubit.dart';
-import 'package:frontend/presentation/user_home_screen/user_home_screen.dart';
+import 'package:Apka_Furniture/bloc/bottomBarBloc/bottomBarCubit.dart';
+import 'package:Apka_Furniture/presentation/user_home_screen/user_home_screen.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 // ignore_for_file: must_be_immutable

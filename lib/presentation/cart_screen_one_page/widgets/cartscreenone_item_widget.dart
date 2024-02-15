@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/cartBloc/cart_cubit.dart';
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/data/models/product_model.dart';
-import 'package:frontend/widgets/custom_elevated_button.dart';
+import 'package:Apka_Furniture/bloc/cartBloc/cart_cubit.dart';
+import 'package:Apka_Furniture/bloc/productBloc/product_cubit.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/data/models/product_model.dart';
+import 'package:Apka_Furniture/widgets/custom_elevated_button.dart';
 
 // ignore: must_be_immutable
 class CartscreenoneItemWidget extends StatelessWidget {
@@ -98,6 +99,7 @@ class CartscreenoneItemWidget extends StatelessWidget {
                 CustomElevatedButton(
                   onPressed: () {
                     context.read<CartCubit>().removeFromCart(cartItem);
+                    context.read<ProductCubit>().addProduct(cartItem);
                   },
                   height: 23.v,
                   width: 76.h,

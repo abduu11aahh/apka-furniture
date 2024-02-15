@@ -1,18 +1,18 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/AuthBloc/auth_cubit.dart';
-import 'package:frontend/bloc/cartBloc/cart_cubit.dart';
-import 'package:frontend/bloc/productBloc/product_cubit.dart';
-import 'package:frontend/bloc/productBloc/product_state.dart';
-import 'package:frontend/data/models/product_model.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
+import 'package:Apka_Furniture/bloc/cartBloc/cart_cubit.dart';
+import 'package:Apka_Furniture/bloc/productBloc/product_cubit.dart';
+import 'package:Apka_Furniture/bloc/productBloc/product_state.dart';
+import 'package:Apka_Furniture/data/models/product_model.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-
 import '../user_home_screen/widgets/mask_item_widget.dart';
 import 'widgets/category_widget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/widgets/custom_bottom_app_bar.dart';
-import 'package:frontend/widgets/custom_elevated_button.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/widgets/custom_bottom_app_bar.dart';
+import 'package:Apka_Furniture/widgets/custom_elevated_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 // ignore_for_file: must_be_immutable
@@ -22,17 +22,22 @@ class UserHomeScreen extends StatefulWidget {
 }
 
 class _UserHomeScreenState extends State<UserHomeScreen> {
+  static bool _isInitialized = false;
   @override
   void initState() {
     super.initState();
-    //context.read<ProductCubit>().fetchProducts();
+    if (!_isInitialized) {
+      context.read<ProductCubit>().fetchProducts();
+      _isInitialized = true;
+    }
+
     // BlocListener<ProductCubit, ProductState>(listener: (context, state) {
     //   if (state is ProductFetchSuccessState && state.products.length > 0) {
     //   } else {
     //     context.read<ProductCubit>().fetchProducts();
     //   }
     // });
-    context.read<ProductCubit>().fetchProducts();
+    //context.read<ProductCubit>().fetchProducts();
   }
 
   int sliderIndex = 1;
@@ -44,7 +49,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
     //context.read<ProductCubit>().fetchProducts();
     mediaQueryData = MediaQuery.of(context);
     String token = context.read<AuthCubit>().getToken();
-    String name = 'Buyer';
+    String name = 'Guest';
     if (token != '') {
       Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
       name = decodedToken['name'];
@@ -91,7 +96,9 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                                   } else if (state is ProductFetchErrorState) {
                                     return Center(
                                       child:
-                                          Text('Error: ${state.errorMessage}'),
+                                          //Text('Error: ${state.errorMessage}'),
+                                          Text(
+                                              'Please check your internet connection!'),
                                     );
                                   } else {
                                     return Container();
@@ -305,6 +312,18 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                 CustomElevatedButton(
                     onPressed: () {
                       context.read<CartCubit>().addToCart(product);
+                      Fluttertoast.showToast(
+                        msg: "Item added to the cart",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.green,
+                        textColor: Colors.white,
+                        fontSize: 13.0,
+                      );
+                      Future.delayed(Duration(milliseconds: 500), () {
+                        context.read<ProductCubit>().removeProduct(product);
+                      });
                     },
                     height: 24.v,
                     width: 160.h,
@@ -313,6 +332,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                     buttonTextStyle: theme.textTheme.labelSmall
                         ?.copyWith(color: appTheme.white),
                     alignment: Alignment.center),
+
                 //SizedBox(height: 4.v)
               ])),
     );

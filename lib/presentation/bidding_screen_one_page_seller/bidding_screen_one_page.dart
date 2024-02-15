@@ -1,10 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/AuthBloc/auth_cubit.dart';
-import 'package:frontend/bloc/BidBloc/bid_cubit.dart';
-import 'package:frontend/bloc/BidBloc/bid_state.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
+import 'package:Apka_Furniture/bloc/BidBloc/bid_cubit.dart';
+import 'package:Apka_Furniture/bloc/BidBloc/bid_state.dart';
 import '../bidding_screen_one_page_seller/widgets/biddingscreenone_item_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend/core/app_export.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
 
 class BiddingScreenSellerOnePage extends StatefulWidget {
   const BiddingScreenSellerOnePage({Key? key}) : super(key: key);

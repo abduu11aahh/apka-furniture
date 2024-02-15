@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/widgets/app_bar/appbar_title.dart';
-import 'package:frontend/widgets/app_bar/custom_app_bar.dart';
-import 'package:frontend/widgets/custom_elevated_button.dart';
-import 'package:frontend/widgets/custom_text_form_field.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/widgets/app_bar/appbar_title.dart';
+import 'package:Apka_Furniture/widgets/app_bar/custom_app_bar.dart';
+import 'package:Apka_Furniture/widgets/custom_elevated_button.dart';
+import 'package:Apka_Furniture/widgets/custom_text_form_field.dart';
 
 // ignore_for_file: must_be_immutable
 class PaymentMethodTwoScreen extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/QuoteBloc/quote_state.dart';
-import 'package:frontend/data/models/quote_model.dart';
+import 'package:Apka_Furniture/bloc/QuoteBloc/quote_state.dart';
+import 'package:Apka_Furniture/data/models/quote_model.dart';
 import 'package:http/http.dart' as http;
 
 class QuoteCubit extends Cubit<QuoteState> {

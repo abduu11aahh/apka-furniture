@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/cartBloc/cart_state.dart';
+import 'package:Apka_Furniture/bloc/cartBloc/cart_state.dart';
 import '../../data/models/product_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -10,8 +10,10 @@ class CartCubit extends Cubit<CartState> {
   // Add a product to the cart
   void addToCart(ProductModel product) {
     final List<ProductModel> updatedCart = List.from(state.cartItems);
-    updatedCart.add(product);
-    emit(CartState(cartItems: updatedCart));
+    if (!updatedCart.contains(product)) {
+      updatedCart.add(product);
+      emit(CartState(cartItems: updatedCart));
+    }
   }
 
   // Remove a product from the cart

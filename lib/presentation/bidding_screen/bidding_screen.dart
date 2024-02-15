@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/bloc/bottomBarBloc/sellerBottomBarCubit.dart';
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/presentation/bidding_screen_one_page/bidding_screen_one_page.dart';
-import 'package:frontend/presentation/bidding_screen_two_page/bidding_screen_two_page.dart';
-import 'package:frontend/presentation/seller_home_screen/seller_home_screen.dart';
-import 'package:frontend/presentation/user_home_screen/user_home_screen.dart';
-import 'package:frontend/widgets/app_bar/appbar_title.dart';
+import 'package:Apka_Furniture/bloc/bottomBarBloc/sellerBottomBarCubit.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/presentation/bidding_screen_one_page/bidding_screen_one_page.dart';
+import 'package:Apka_Furniture/presentation/bidding_screen_two_page/bidding_screen_two_page.dart';
+import 'package:Apka_Furniture/presentation/seller_home_screen/seller_home_screen.dart';
+import 'package:Apka_Furniture/presentation/user_home_screen/user_home_screen.dart';
+import 'package:Apka_Furniture/widgets/app_bar/appbar_title.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/bottomBarBloc/bottomBarCubit.dart';
-import 'package:frontend/widgets/custom_bottom_app_bar.dart';
-import 'package:frontend/widgets/custom_bottom_app_bar.dart';
+import 'package:Apka_Furniture/bloc/bottomBarBloc/bottomBarCubit.dart';
+import 'package:Apka_Furniture/widgets/custom_bottom_app_bar.dart';
+import 'package:Apka_Furniture/widgets/custom_bottom_app_bar.dart';
 
 class BiddingScreen extends StatefulWidget {
   const BiddingScreen({Key? key}) : super(key: key);

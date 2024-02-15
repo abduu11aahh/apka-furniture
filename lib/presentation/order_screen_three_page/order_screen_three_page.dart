@@ -1,12 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/AuthBloc/auth_cubit.dart';
-import 'package:frontend/bloc/QuoteBloc/quote_cubit.dart';
-import 'package:frontend/bloc/QuoteBloc/quote_state.dart';
-import 'package:frontend/data/models/quote_model.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
+import 'package:Apka_Furniture/bloc/QuoteBloc/quote_cubit.dart';
+import 'package:Apka_Furniture/bloc/QuoteBloc/quote_state.dart';
+import 'package:Apka_Furniture/data/models/quote_model.dart';
 import '../order_screen_three_page/widgets/orderscreen_item_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/presentation/order_screen_two_dialog/order_screen_two_dialog.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/presentation/order_screen_two_dialog/order_screen_two_dialog.dart';
 
 class OrderScreenThreePage extends StatefulWidget {
   const OrderScreenThreePage({Key? key}) : super(key: key);

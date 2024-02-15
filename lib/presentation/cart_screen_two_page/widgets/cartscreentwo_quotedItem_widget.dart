@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/data/models/quote_model.dart';
-import 'package:frontend/widgets/custom_elevated_button.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/data/models/quote_model.dart';
+import 'package:Apka_Furniture/widgets/custom_elevated_button.dart';
 
 // ignore: must_be_immutable
 class CartscreenTwoQuotedItemWidget extends StatelessWidget {

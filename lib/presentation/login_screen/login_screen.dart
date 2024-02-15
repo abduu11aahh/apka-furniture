@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/AuthBloc/auth_cubit.dart';
-import 'package:frontend/bloc/AuthBloc/auth_sate.dart';
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/widgets/custom_bottom_app_bar.dart';
-import 'package:frontend/widgets/custom_elevated_button.dart';
-import 'package:frontend/widgets/custom_text_form_field.dart';
-import 'package:frontend/widgets/seller_bottom_bar.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_sate.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/widgets/custom_bottom_app_bar.dart';
+import 'package:Apka_Furniture/widgets/custom_elevated_button.dart';
+import 'package:Apka_Furniture/widgets/custom_text_form_field.dart';
+import 'package:Apka_Furniture/widgets/seller_bottom_bar.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -56,9 +56,9 @@ class LoginScreen extends StatelessWidget {
                       controller: phoneNumberController,
                       hintText: "Phone Number",
                       validator: (value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            !RegExp(r'^\+92\d{10}$').hasMatch(value)) {
+                        if (value == null || value.isEmpty
+                            //  || !RegExp(r'^\+92\d{10}$').hasMatch(value)
+                            ) {
                           return 'Please enter a valid phone number';
                         }
                         return null;

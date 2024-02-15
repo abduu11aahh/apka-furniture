@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/AuthBloc/auth_cubit.dart';
-import 'package:frontend/bloc/ProposalBloc/proposal_cubit.dart';
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/data/models/proposal_model.dart';
-import 'package:frontend/presentation/proposal_screen_dialog/proposal_screen_dialog.dart';
-import 'package:frontend/widgets/custom_elevated_button.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
+import 'package:Apka_Furniture/bloc/ProposalBloc/proposal_cubit.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/data/models/proposal_model.dart';
+import 'package:Apka_Furniture/presentation/proposal_screen_dialog/proposal_screen_dialog.dart';
+import 'package:Apka_Furniture/widgets/custom_elevated_button.dart';
 
 // ignore: must_be_immutable
 class BiddingscreenoneItemWidget extends StatelessWidget {

@@ -1,4 +1,4 @@
-name: frontend
+name: Apka_Furniture
 description: A new Flutter project.
 version: 1.0.0+1
 environment: 
@@ -19,10 +19,17 @@ dependencies:
   firebase_core: ^2.24.2
   firebase_auth: ^4.15.3
   fluttertoast: ^8.2.4
+  photo_view: ^0.14.0
   shared_preferences: ^2.2.2
   jwt_decoder: ^2.0.1
   firebase_messaging: ^14.7.10
 dev_dependencies: 
+  flutter_launcher_icons: "^0.13.1"
+  
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/logo.png"
   flutter_test: 
     sdk: flutter
 flutter: 

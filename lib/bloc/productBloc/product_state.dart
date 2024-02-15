@@ -1,4 +1,4 @@
-import 'package:frontend/data/models/product_model.dart';
+import 'package:Apka_Furniture/data/models/product_model.dart';
 import 'package:image_picker/image_picker.dart';
 
 abstract class ProductState {

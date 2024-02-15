@@ -1,8 +1,8 @@
 // Product_cubit.dart
 import 'dart:convert';
 import 'package:bloc/bloc.dart';
-import 'package:frontend/bloc/productBloc/product_state.dart';
-import 'package:frontend/data/models/product_model.dart';
+import 'package:Apka_Furniture/bloc/productBloc/product_state.dart';
+import 'package:Apka_Furniture/data/models/product_model.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:firebase_storage/firebase_storage.dart';
@@ -206,6 +206,26 @@ class ProductCubit extends Cubit<ProductState> {
       }
     } catch (error) {
       emit(ProductFetchErrorState(error.toString()));
+    }
+  }
+
+  // Function to add or remove a products from the ProductFetchSuccessState
+  void addProduct(ProductModel newProduct) {
+    if (state is ProductFetchSuccessState) {
+      final List<ProductModel> updatedProducts =
+          List.from((state as ProductFetchSuccessState).products);
+      //updatedProducts.add(newProduct);
+      updatedProducts.insert(0, newProduct);
+      emit(ProductFetchSuccessState(updatedProducts));
+    }
+  }
+
+  void removeProduct(ProductModel productToRemove) {
+    if (state is ProductFetchSuccessState) {
+      final List<ProductModel> updatedProducts =
+          List.from((state as ProductFetchSuccessState).products);
+      updatedProducts.remove(productToRemove);
+      emit(ProductFetchSuccessState(updatedProducts));
     }
   }
 }

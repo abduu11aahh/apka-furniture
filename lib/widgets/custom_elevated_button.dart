@@ -1,5 +1,5 @@
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/widgets/base_button.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/widgets/base_button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 
@@ -52,7 +52,19 @@ class CustomElevatedButton extends BaseButton {
         margin: margin,
         decoration: decoration,
         child: ElevatedButton(
-          style: buttonStyle,
+          style: buttonStyle?.copyWith(
+            overlayColor: MaterialStateProperty.resolveWith<Color>(
+              (Set<MaterialState> states) {
+                if (states.contains(MaterialState.pressed))
+                  return Color.fromARGB(255, 133, 245, 174);
+                else {
+                  return buttonStyle?.backgroundColor?.resolve(states) ??
+                      Colors.white;
+                }
+                // Use the component's default.
+              },
+            ),
+          ),
           onPressed: isDisabled ?? false ? null : onPressed ?? () {},
           child: imagePath != null
               ? Column(

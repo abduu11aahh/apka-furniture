@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/core/app_export.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
 
 // ignore: must_be_immutable
 class CategoryWidget extends StatelessWidget {

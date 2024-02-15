@@ -7,11 +7,11 @@
          additional functionality it is fine to subclass or reimplement
          FlutterApplication and put your custom class here. -->
     <application
-        android:label="frontend"
-        android:icon="@mipmap/ic_launcher" android:usesCleartextTraffic="true">
+        android:label="Apka Furniture"
+        android:icon="@mipmap/launcher_icon" android:usesCleartextTraffic="true">
        
         <activity
-            android:name=".MainActivity"
+            android:name=".MainActivity" 
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

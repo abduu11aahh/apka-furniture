@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/bloc/AuthBloc/auth_cubit.dart';
-import 'package:frontend/bloc/QuoteBloc/quote_cubit.dart';
-import 'package:frontend/bloc/bottomBarBloc/sellerBottomBarCubit.dart';
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/presentation/order_screen_five_page/order_screen_five_page.dart';
-import 'package:frontend/presentation/order_screen_four_page/order_screen_four_page.dart';
-//import 'package:frontend/presentation/notification_screen_one_page/notification_screen_one_page.dart';
-import 'package:frontend/presentation/order_screen_one_page/order_screen_one_page.dart';
-import 'package:frontend/presentation/order_screen_three_page/order_screen_three_page.dart';
-import 'package:frontend/presentation/order_screen_two_page/order_screen_two_page.dart';
-import 'package:frontend/presentation/seller_home_screen/seller_home_screen.dart';
-import 'package:frontend/widgets/app_bar/appbar_leading_iconbutton.dart';
-import 'package:frontend/widgets/app_bar/appbar_title.dart';
-import 'package:frontend/widgets/app_bar/custom_app_bar.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
+import 'package:Apka_Furniture/bloc/QuoteBloc/quote_cubit.dart';
+import 'package:Apka_Furniture/bloc/bottomBarBloc/sellerBottomBarCubit.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/presentation/order_screen_five_page/order_screen_five_page.dart';
+import 'package:Apka_Furniture/presentation/order_screen_four_page/order_screen_four_page.dart';
+//import 'package:Apka_Furniture/presentation/notification_screen_one_page/notification_screen_one_page.dart';
+import 'package:Apka_Furniture/presentation/order_screen_one_page/order_screen_one_page.dart';
+import 'package:Apka_Furniture/presentation/order_screen_three_page/order_screen_three_page.dart';
+import 'package:Apka_Furniture/presentation/order_screen_two_page/order_screen_two_page.dart';
+import 'package:Apka_Furniture/presentation/seller_home_screen/seller_home_screen.dart';
+import 'package:Apka_Furniture/widgets/app_bar/appbar_leading_iconbutton.dart';
+import 'package:Apka_Furniture/widgets/app_bar/appbar_title.dart';
+import 'package:Apka_Furniture/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/bottomBarBloc/bottomBarCubit.dart';
-//import 'package:frontend/widgets/custom_bottom_app_bar.dart';
+import 'package:Apka_Furniture/bloc/bottomBarBloc/bottomBarCubit.dart';
+//import 'package:Apka_Furniture/widgets/custom_bottom_app_bar.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
-//import 'package:frontend/data/models/Bid_model.dart';
+//import 'package:Apka_Furniture/data/models/Bid_model.dart';
 
-import 'package:frontend/data/models/bid_model.dart';
+import 'package:Apka_Furniture/data/models/bid_model.dart';
 
 abstract class BidState {}
 

@@ -1,15 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/NotificationBloc/notification_cubit.dart';
-import 'package:frontend/bloc/NotificationBloc/notification_state.dart';
+import 'package:Apka_Furniture/bloc/NotificationBloc/notification_cubit.dart';
+import 'package:Apka_Furniture/bloc/NotificationBloc/notification_state.dart';
 
 import '../notification_screen/widgets/notification_item_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend/core/app_export.dart';
-//import 'package:frontend/widgets/app_bar/appbar_leading_iconbutton.dart';
-import 'package:frontend/widgets/app_bar/appbar_title.dart';
-//import 'package:frontend/widgets/app_bar/custom_app_bar.dart';
-import 'package:frontend/widgets/custom_bottom_app_bar.dart';
-//import 'package:frontend/widgets/custom_icon_button.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+//import 'package:Apka_Furniture/widgets/app_bar/appbar_leading_iconbutton.dart';
+import 'package:Apka_Furniture/widgets/app_bar/appbar_title.dart';
+//import 'package:Apka_Furniture/widgets/app_bar/custom_app_bar.dart';
+import 'package:Apka_Furniture/widgets/custom_bottom_app_bar.dart';
+//import 'package:Apka_Furniture/widgets/custom_icon_button.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({Key? key}) : super(key: key);

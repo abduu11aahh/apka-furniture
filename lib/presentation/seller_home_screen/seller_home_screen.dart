@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/AuthBloc/auth_cubit.dart';
-import 'package:frontend/bloc/productBloc/product_cubit.dart';
-import 'package:frontend/data/models/product_model.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
+import 'package:Apka_Furniture/bloc/productBloc/product_cubit.dart';
+import 'package:Apka_Furniture/data/models/product_model.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 import '../../bloc/productBloc/product_state.dart';
@@ -9,9 +9,9 @@ import '../seller_home_screen/widgets/mask_item_widget.dart';
 import 'widgets/category_widget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/widgets/custom_bottom_app_bar.dart';
-import 'package:frontend/widgets/custom_elevated_button.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/widgets/custom_bottom_app_bar.dart';
+import 'package:Apka_Furniture/widgets/custom_elevated_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 // ignore_for_file: must_be_immutable

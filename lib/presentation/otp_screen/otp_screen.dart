@@ -1,15 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/AuthBloc/auth_cubit.dart';
-import 'package:frontend/bloc/AuthBloc/auth_sate.dart';
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/presentation/register_screen/register_screen.dart';
-import 'package:frontend/presentation/seller_home_screen/seller_home_screen.dart';
-import 'package:frontend/widgets/custom_bottom_app_bar.dart';
-import 'package:frontend/widgets/custom_elevated_button.dart';
-import 'package:frontend/widgets/custom_text_form_field.dart';
-import 'package:frontend/widgets/seller_bottom_bar.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_sate.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/presentation/register_screen/register_screen.dart';
+import 'package:Apka_Furniture/presentation/seller_home_screen/seller_home_screen.dart';
+import 'package:Apka_Furniture/widgets/custom_bottom_app_bar.dart';
+import 'package:Apka_Furniture/widgets/custom_elevated_button.dart';
+import 'package:Apka_Furniture/widgets/custom_text_form_field.dart';
+import 'package:Apka_Furniture/widgets/seller_bottom_bar.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 class OtpScreen extends StatelessWidget {

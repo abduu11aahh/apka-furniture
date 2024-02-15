@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/AuthBloc/auth_cubit.dart';
-import 'package:frontend/bloc/AuthBloc/auth_sate.dart';
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/widgets/custom_elevated_button.dart';
-import 'package:frontend/widgets/custom_text_form_field.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
+import 'package:Apka_Furniture/bloc/AuthBloc/auth_sate.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/widgets/custom_elevated_button.dart';
+import 'package:Apka_Furniture/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -79,9 +79,9 @@ class RegisterScreen extends StatelessWidget {
                                               controller: phoneNumberController,
                                               validator: (value) {
                                                 if (value == null ||
-                                                    value.isEmpty ||
-                                                    !RegExp(r'^\+92\d{10}$')
-                                                        .hasMatch(value)) {
+                                                        value.isEmpty
+                                                    // || !RegExp(r'^\+92\d{10}$').hasMatch(value)
+                                                    ) {
                                                   return 'Please enter a valid phone number';
                                                 }
                                                 return null;

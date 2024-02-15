@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/bloc/bottomBarBloc/bottomBarCubit.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/bloc/bottomBarBloc/bottomBarCubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/presentation/bidding_screen/bidding_screen.dart';
-import 'package:frontend/presentation/cart_screen/cart_screen.dart';
-import 'package:frontend/presentation/more_screen/more_screen.dart';
-import 'package:frontend/presentation/user_home_screen/user_home_screen.dart';
+import 'package:Apka_Furniture/presentation/bidding_screen/bidding_screen.dart';
+import 'package:Apka_Furniture/presentation/cart_screen/cart_screen.dart';
+import 'package:Apka_Furniture/presentation/more_screen/more_screen.dart';
+import 'package:Apka_Furniture/presentation/user_home_screen/user_home_screen.dart';
 
 class CustomBottomAppBar extends StatefulWidget {
   @override

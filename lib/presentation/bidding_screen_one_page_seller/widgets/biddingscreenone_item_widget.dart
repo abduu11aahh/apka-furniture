@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/data/models/bid_model.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/data/models/bid_model.dart';
 
 // ignore: must_be_immutable
 class BiddingscreenlistItemWidget extends StatelessWidget {

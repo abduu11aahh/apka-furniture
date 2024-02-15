@@ -1,40 +1,40 @@
 import 'package:flutter/material.dart';
-//import 'package:frontend/presentation/splash_screen_pre_loader_screen/splash_screen_pre_loader_screen.dart';
-import 'package:frontend/presentation/splash_screen/splash_screen.dart';
-import 'package:frontend/presentation/splash_logo_screen/splash_logo_screen.dart';
-import 'package:frontend/presentation/info_screen/info_screen.dart';
-import 'package:frontend/presentation/buyer_and_seller_screen/buyer_and_seller_screen.dart';
-//import 'package:frontend/presentation/register_one_screen/register_one_screen.dart';
-import 'package:frontend/presentation/otp_screen/otp_screen.dart';
-import 'package:frontend/presentation/register_screen/register_screen.dart';
-//import 'package:frontend/presentation/otp_screen/otp_screen.dart';
-import 'package:frontend/presentation/login_screen/login_screen.dart';
-//import 'package:frontend/presentation/notification_screen_one_container_screen/notification_screen_one_container_screen.dart';
-//import 'package:frontend/presentation/notification_screen/notification_screen.dart';
-import 'package:frontend/presentation/user_home_screen/user_home_screen.dart';
-import 'package:frontend/presentation/item_screen/item_screen.dart';
-import 'package:frontend/presentation/buyer_creating_new_item_screen/buyer_creating_new_item_screen.dart';
-import 'package:frontend/presentation/blur_buyer_creating_new_item_screen/blur_buyer_creating_new_item_screen.dart';
-//import 'package:frontend/presentation/order_screen_one_screen/order_screen_one_screen.dart';
-import 'package:frontend/presentation/cart_screen/cart_screen.dart';
-//import 'package:frontend/presentation/bidding_screen_two_tab_container_screen/bidding_screen_two_tab_container_screen.dart';
-//import 'package:frontend/presentation/more_screen_one_screen/more_screen_one_screen.dart';
-import 'package:frontend/presentation/payment_method_one_screen/payment_method_one_screen.dart';
-import 'package:frontend/presentation/payment_method_two_screen/payment_method_two_screen.dart';
-import 'package:frontend/presentation/payment_method_three_screen/payment_method_three_screen.dart';
-import 'package:frontend/presentation/payment_method_screen/payment_method_screen.dart';
+//import 'package:Apka_Furniture/presentation/splash_screen_pre_loader_screen/splash_screen_pre_loader_screen.dart';
+import 'package:Apka_Furniture/presentation/splash_screen/splash_screen.dart';
+import 'package:Apka_Furniture/presentation/splash_logo_screen/splash_logo_screen.dart';
+import 'package:Apka_Furniture/presentation/info_screen/info_screen.dart';
+import 'package:Apka_Furniture/presentation/buyer_and_seller_screen/buyer_and_seller_screen.dart';
+//import 'package:Apka_Furniture/presentation/register_one_screen/register_one_screen.dart';
+import 'package:Apka_Furniture/presentation/otp_screen/otp_screen.dart';
+import 'package:Apka_Furniture/presentation/register_screen/register_screen.dart';
+//import 'package:Apka_Furniture/presentation/otp_screen/otp_screen.dart';
+import 'package:Apka_Furniture/presentation/login_screen/login_screen.dart';
+//import 'package:Apka_Furniture/presentation/notification_screen_one_container_screen/notification_screen_one_container_screen.dart';
+//import 'package:Apka_Furniture/presentation/notification_screen/notification_screen.dart';
+import 'package:Apka_Furniture/presentation/user_home_screen/user_home_screen.dart';
+import 'package:Apka_Furniture/presentation/item_screen/item_screen.dart';
+import 'package:Apka_Furniture/presentation/buyer_creating_new_item_screen/buyer_creating_new_item_screen.dart';
+import 'package:Apka_Furniture/presentation/blur_buyer_creating_new_item_screen/blur_buyer_creating_new_item_screen.dart';
+//import 'package:Apka_Furniture/presentation/order_screen_one_screen/order_screen_one_screen.dart';
+import 'package:Apka_Furniture/presentation/cart_screen/cart_screen.dart';
+//import 'package:Apka_Furniture/presentation/bidding_screen_two_tab_container_screen/bidding_screen_two_tab_container_screen.dart';
+//import 'package:Apka_Furniture/presentation/more_screen_one_screen/more_screen_one_screen.dart';
+import 'package:Apka_Furniture/presentation/payment_method_one_screen/payment_method_one_screen.dart';
+import 'package:Apka_Furniture/presentation/payment_method_two_screen/payment_method_two_screen.dart';
+import 'package:Apka_Furniture/presentation/payment_method_three_screen/payment_method_three_screen.dart';
+import 'package:Apka_Furniture/presentation/payment_method_screen/payment_method_screen.dart';
 
-import 'package:frontend/presentation/notification_screen/notification_screen.dart';
+import 'package:Apka_Furniture/presentation/notification_screen/notification_screen.dart';
 
-import 'package:frontend/presentation/seller_home_screen/seller_home_screen.dart';
-import 'package:frontend/presentation/seller_creating_new_item_screen/seller_creating_new_item_screen.dart';
-import 'package:frontend/presentation/order_screen/order_screen.dart';
-import 'package:frontend/presentation/bidding_screen/bidding_screen.dart';
-import 'package:frontend/presentation/more_screen/more_screen.dart';
-import 'package:frontend/presentation/app_navigation_screen/app_navigation_screen.dart';
+import 'package:Apka_Furniture/presentation/seller_home_screen/seller_home_screen.dart';
+import 'package:Apka_Furniture/presentation/seller_creating_new_item_screen/seller_creating_new_item_screen.dart';
+import 'package:Apka_Furniture/presentation/order_screen/order_screen.dart';
+import 'package:Apka_Furniture/presentation/bidding_screen/bidding_screen.dart';
+import 'package:Apka_Furniture/presentation/more_screen/more_screen.dart';
+import 'package:Apka_Furniture/presentation/app_navigation_screen/app_navigation_screen.dart';
 
-import 'package:frontend/widgets/custom_bottom_app_bar.dart';
-import 'package:frontend/widgets/seller_bottom_bar.dart';
+import 'package:Apka_Furniture/widgets/custom_bottom_app_bar.dart';
+import 'package:Apka_Furniture/widgets/seller_bottom_bar.dart';
 
 class AppRoutes {
   static const String splashScreenPreLoaderScreen =

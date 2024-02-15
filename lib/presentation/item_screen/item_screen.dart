@@ -1,15 +1,21 @@
+import 'package:Apka_Furniture/bloc/bottomBarBloc/bottomBarCubit.dart';
+import 'package:Apka_Furniture/presentation/cart_screen/cart_screen.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/cartBloc/cart_cubit.dart';
-import 'package:frontend/core/app_export.dart';
-import 'package:frontend/data/models/product_model.dart';
-import 'package:frontend/presentation/buyer_creating_new_item_screen/buyer_creating_new_item_screen.dart';
-import 'package:frontend/presentation/seller_creating_new_item_screen/seller_creating_new_item_screen.dart';
-import 'package:frontend/widgets/app_bar/appbar_leading_iconbutton.dart';
-import 'package:frontend/widgets/app_bar/appbar_title.dart';
-import 'package:frontend/widgets/app_bar/custom_app_bar.dart';
-import 'package:frontend/widgets/custom_elevated_button.dart';
+import 'package:Apka_Furniture/bloc/cartBloc/cart_cubit.dart';
+import 'package:Apka_Furniture/bloc/productBloc/product_cubit.dart';
+import 'package:Apka_Furniture/bloc/productBloc/product_state.dart';
+import 'package:Apka_Furniture/core/app_export.dart';
+import 'package:Apka_Furniture/data/models/product_model.dart';
+import 'package:Apka_Furniture/presentation/buyer_creating_new_item_screen/buyer_creating_new_item_screen.dart';
+import 'package:Apka_Furniture/presentation/item_screen/widgets/fullScreenImage.dart';
+import 'package:Apka_Furniture/presentation/seller_creating_new_item_screen/seller_creating_new_item_screen.dart';
+import 'package:Apka_Furniture/widgets/app_bar/appbar_leading_iconbutton.dart';
+import 'package:Apka_Furniture/widgets/app_bar/appbar_title.dart';
+import 'package:Apka_Furniture/widgets/app_bar/custom_app_bar.dart';
+import 'package:Apka_Furniture/widgets/custom_elevated_button.dart';
 
 class ItemScreen extends StatelessWidget {
   const ItemScreen({Key? key}) : super(key: key);
@@ -19,6 +25,11 @@ class ItemScreen extends StatelessWidget {
     mediaQueryData = MediaQuery.of(context);
     final ProductModel product =
         ModalRoute.of(context)?.settings.arguments as ProductModel;
+    // final int productId = ModalRoute.of(context)?.settings.arguments as int;
+    // final ProductModel product =
+    //     (context.read<ProductCubit>().state as ProductFetchSuccessState)
+    //         .products
+    //         .firstWhere((product) => product.productId == productId);
     return SafeArea(
         child: Scaffold(
             appBar: _buildAppBar(context),
@@ -184,7 +195,7 @@ class ItemScreen extends StatelessWidget {
   Widget _buildImageCarousel(BuildContext context, List<String> images) {
     return CarouselSlider(
       options: CarouselOptions(
-        height: 250.0,
+        height: 250.v,
         enlargeCenterPage: true,
         autoPlay: false,
         aspectRatio: 16 / 9,
@@ -196,16 +207,48 @@ class ItemScreen extends StatelessWidget {
       items: images.map((image) {
         return Builder(
           builder: (BuildContext context) {
-            return Container(
+            return GestureDetector(
+              onTap: () {
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => FullScreenImage(image: image),
+                //   ),
+                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FullScreenImageGallery(
+                      images: images,
+                      initialIndex: images.indexOf(image),
+                    ),
+                  ),
+                );
+              },
+              child: Container(
                 width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.symmetric(horizontal: 5.0),
+                margin: EdgeInsets.symmetric(horizontal: 5.h, vertical: 10.v),
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8.0)),
-                child: Image.network(
-                  image,
-                  fit: BoxFit.cover,
-                ));
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(5.0),
+                  child: CachedNetworkImage(
+                    imageUrl: image,
+                    fit: BoxFit.cover,
+                    // placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
+                ),
+              ),
+            );
           },
         );
       }).toList(),
@@ -257,7 +300,15 @@ class ItemScreen extends StatelessWidget {
         ),
         onPressed: () {
           context.read<CartCubit>().addToCart(product);
-          Navigator.pushNamed(context, AppRoutes.cartScreen);
+
+          context.read<CartCubit>().addToCart(product);
+          context.read<BottomBarCubit>().setCurrentTab(0, CartScreen());
+          // Navigator.pushNamed(
+          //   context,
+          //   AppRoutes.bottomBarScreen,
+          // );
+          Navigator.pop(context);
+          // Navigator.pushReplacementNamed(context, AppRoutes.bottomBarScreen);
         });
   }
 
