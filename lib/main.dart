@@ -1,3 +1,8 @@
+import 'package:Apka_Furniture/bloc/QuoteBloc/bed_quote_cubit.dart';
+import 'package:Apka_Furniture/bloc/QuoteBloc/chair_quote_cubit.dart';
+import 'package:Apka_Furniture/bloc/QuoteBloc/others_quote_cubit.dart';
+import 'package:Apka_Furniture/bloc/QuoteBloc/sofa_quote_cubit.dart';
+import 'package:Apka_Furniture/bloc/QuoteBloc/table_quote_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:Apka_Furniture/bloc/BidBloc/bid_cubit.dart';
@@ -56,6 +61,11 @@ void main() async {
         BlocProvider<ProductCubit>(create: (context) => ProductCubit()),
         BlocProvider<CartCubit>(create: (context) => CartCubit()),
         BlocProvider<QuoteCubit>(create: (context) => QuoteCubit()),
+        BlocProvider<TableQuoteCubit>(create: (context) => TableQuoteCubit()),
+        BlocProvider<ChairQuoteCubit>(create: (context) => ChairQuoteCubit()),
+        BlocProvider<BedQuoteCubit>(create: (context) => BedQuoteCubit()),
+        BlocProvider<OthersQuoteCubit>(create: (context) => OthersQuoteCubit()),
+        BlocProvider<SofaQuoteCubit>(create: (context) => SofaQuoteCubit()),
         BlocProvider<BidCubit>(create: (context) => BidCubit()),
         BlocProvider<ProposalCubit>(create: (context) => ProposalCubit()),
         BlocProvider<NotificationCubit>(
@@ -65,6 +75,8 @@ void main() async {
     ),
   );
 }
+
+class tableQuoteCubit {}
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(

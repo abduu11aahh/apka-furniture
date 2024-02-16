@@ -1,3 +1,9 @@
+import 'package:Apka_Furniture/bloc/QuoteBloc/bed_quote_cubit.dart';
+import 'package:Apka_Furniture/bloc/QuoteBloc/chair_quote_cubit.dart';
+import 'package:Apka_Furniture/bloc/QuoteBloc/others_quote_cubit.dart';
+import 'package:Apka_Furniture/bloc/QuoteBloc/quote_cubit.dart';
+import 'package:Apka_Furniture/bloc/QuoteBloc/sofa_quote_cubit.dart';
+import 'package:Apka_Furniture/bloc/QuoteBloc/table_quote_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
 import 'package:Apka_Furniture/bloc/productBloc/product_cubit.dart';
@@ -33,7 +39,11 @@ class SellerHomeScreen extends StatelessWidget {
     }
 
     context.read<ProductCubit>().fetchProductsbySeller(token);
-
+    context.read<BedQuoteCubit>().getAllQuotes(token);
+    context.read<ChairQuoteCubit>().getAllQuotes(token);
+    context.read<TableQuoteCubit>().getAllQuotes(token);
+    context.read<OthersQuoteCubit>().getAllQuotes(token);
+    context.read<SofaQuoteCubit>().getAllQuotes(token);
     return SafeArea(
         child: Scaffold(
       appBar: _buildAppBar(context, name),

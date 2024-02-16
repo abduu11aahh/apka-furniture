@@ -37,17 +37,17 @@ class OrderScreenState extends State<OrderScreen>
     tabviewController = TabController(length: 5, vsync: this);
     tabviewController.addListener(() {
       String token = context.read<AuthCubit>().getToken();
-      if (tabviewController.index == 0) {
-        context.read<QuoteCubit>().getQuotesByCategory('Bed', token);
-      } else if (tabviewController.index == 1) {
-        context.read<QuoteCubit>().getQuotesByCategory('Sofa', token);
-      } else if (tabviewController.index == 2) {
-        context.read<QuoteCubit>().getQuotesByCategory('Table', token);
-      } else if (tabviewController.index == 3) {
-        context.read<QuoteCubit>().getQuotesByCategory('Chair', token);
-      } else if (tabviewController.index == 4) {
-        context.read<QuoteCubit>().getQuotesByCategory('Others', token);
-      }
+      // if (tabviewController.index == 0) {
+      //   context.read<QuoteCubit>().getQuotesByCategory('Bed', token);
+      // } else if (tabviewController.index == 1) {
+      //   context.read<QuoteCubit>().getQuotesByCategory('Sofa', token);
+      // } else if (tabviewController.index == 2) {
+      //   context.read<QuoteCubit>().getQuotesByCategory('Table', token);
+      // } else if (tabviewController.index == 3) {
+      //   context.read<QuoteCubit>().getQuotesByCategory('Chair', token);
+      // } else if (tabviewController.index == 4) {
+      //   context.read<QuoteCubit>().getQuotesByCategory('Others', token);
+      // }
     });
   }
 
@@ -135,15 +135,15 @@ class OrderScreenState extends State<OrderScreen>
             dividerHeight: 5.v,
             onTap: (index) {
               if (index == 0) {
-                context.read<QuoteCubit>().getQuotesByCategory('Bed', token);
-              } else if (index == 1) {
-                context.read<QuoteCubit>().getQuotesByCategory('Sofa', token);
-              } else if (index == 2) {
-                context.read<QuoteCubit>().getQuotesByCategory('Table', token);
-              } else if (index == 3) {
-                context.read<QuoteCubit>().getQuotesByCategory('Chair', token);
-              } else if (index == 4) {
-                context.read<QuoteCubit>().getQuotesByCategory('Others', token);
+                //   context.read<QuoteCubit>().getQuotesByCategory('Bed', token);
+                // } else if (index == 1) {
+                //   context.read<QuoteCubit>().getQuotesByCategory('Sofa', token);
+                // } else if (index == 2) {
+                //   context.read<QuoteCubit>().getQuotesByCategory('Table', token);
+                // } else if (index == 3) {
+                //   context.read<QuoteCubit>().getQuotesByCategory('Chair', token);
+                // } else if (index == 4) {
+                //   context.read<QuoteCubit>().getQuotesByCategory('Others', token);
               }
             },
             tabs: [

@@ -2,6 +2,8 @@ import 'package:Apka_Furniture/data/models/quote_model.dart';
 
 abstract class QuoteState {}
 
+//get quotes of a buyer states
+
 class QuoteInitialState extends QuoteState {}
 
 class QuoteLoadingState extends QuoteState {}

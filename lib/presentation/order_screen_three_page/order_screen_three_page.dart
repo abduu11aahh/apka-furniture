@@ -1,3 +1,4 @@
+import 'package:Apka_Furniture/bloc/QuoteBloc/table_quote_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
 import 'package:Apka_Furniture/bloc/QuoteBloc/quote_cubit.dart';
@@ -29,7 +30,7 @@ class OrderScreenPageState extends State<OrderScreenThreePage>
   @override
   Widget build(BuildContext context) {
     String token = context.read<AuthCubit>().getToken();
-    context.read<QuoteCubit>().getQuotesByCategory('Table', token);
+    // context.read<QuoteCubit>().getQuotesByCategory('Table', token);
     mediaQueryData = MediaQuery.of(context);
     return SafeArea(
         child: Scaffold(
@@ -38,9 +39,9 @@ class OrderScreenPageState extends State<OrderScreenThreePage>
                 decoration: AppDecoration.fillWhiteA,
                 child: Column(children: [
                   SizedBox(height: 20.v),
-                  BlocBuilder<QuoteCubit, QuoteState>(
+                  BlocBuilder<TableQuoteCubit, QuoteTableState>(
                     builder: (context, state) {
-                      if (state is QuoteLoadingState) {
+                      if (state is TableQuoteLoadingState) {
                         return CircularProgressIndicator();
                       }
                       return _buildOrderScreen(context);
@@ -54,22 +55,22 @@ class OrderScreenPageState extends State<OrderScreenThreePage>
     return Expanded(
         child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.h),
-            child: BlocBuilder<QuoteCubit, QuoteState>(
+            child: BlocBuilder<TableQuoteCubit, QuoteTableState>(
               builder: (context, state) {
-                if (state is QuoteSuccessState) {
-                  if (state.quotes.length > 0) {
+                if (state is TableQuoteSuccessState) {
+                  if (state.tableQuotes.length > 0) {
                     return ListView.separated(
                         physics: BouncingScrollPhysics(),
                         shrinkWrap: true,
                         separatorBuilder: (context, index) {
                           return SizedBox(height: 15.v);
                         },
-                        itemCount: state.quotes.length,
+                        itemCount: state.tableQuotes.length,
                         itemBuilder: (context, index) {
                           return OrderscreenItemWidget(
-                            quote: state.quotes[index],
+                            quote: state.tableQuotes[index],
                             onTapBidButton: () {
-                              onTapBidButton(context, state.quotes[index]);
+                              onTapBidButton(context, state.tableQuotes[index]);
                             },
                           );
                         });
@@ -77,7 +78,7 @@ class OrderScreenPageState extends State<OrderScreenThreePage>
                     return Text(
                         'There are not any orders of this category yet!');
                   }
-                } else if (state is QuoteErrorState) {
+                } else if (state is TableQuoteErrorState) {
                   return Text('${state.error}');
                 } else {
                   return Container();

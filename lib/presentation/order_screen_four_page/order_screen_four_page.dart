@@ -1,3 +1,4 @@
+import 'package:Apka_Furniture/bloc/QuoteBloc/chair_quote_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
 import 'package:Apka_Furniture/bloc/QuoteBloc/quote_cubit.dart';
@@ -30,7 +31,7 @@ class OrderScreenPageState extends State<OrderScreenFourPage>
   @override
   Widget build(BuildContext context) {
     String token = context.read<AuthCubit>().getToken();
-    context.read<QuoteCubit>().getQuotesByCategory('Chair', token);
+    //context.read<QuoteCubit>().getQuotesByCategory('Chair', token);
     mediaQueryData = MediaQuery.of(context);
     return SafeArea(
         child: Scaffold(
@@ -39,9 +40,9 @@ class OrderScreenPageState extends State<OrderScreenFourPage>
                 decoration: AppDecoration.fillWhiteA,
                 child: Column(children: [
                   SizedBox(height: 20.v),
-                  BlocBuilder<QuoteCubit, QuoteState>(
+                  BlocBuilder<ChairQuoteCubit, QuoteChairState>(
                     builder: (context, state) {
-                      if (state is QuoteLoadingState) {
+                      if (state is ChairQuoteLoadingState) {
                         return CircularProgressIndicator();
                       }
                       return _buildOrderScreen(context);
@@ -55,22 +56,22 @@ class OrderScreenPageState extends State<OrderScreenFourPage>
     return Expanded(
         child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.h),
-            child: BlocBuilder<QuoteCubit, QuoteState>(
+            child: BlocBuilder<ChairQuoteCubit, QuoteChairState>(
               builder: (context, state) {
-                if (state is QuoteSuccessState) {
-                  if (state.quotes.length > 0) {
+                if (state is ChairQuoteSuccessState) {
+                  if (state.chairQuotes.length > 0) {
                     return ListView.separated(
                         physics: BouncingScrollPhysics(),
                         shrinkWrap: true,
                         separatorBuilder: (context, index) {
                           return SizedBox(height: 15.v);
                         },
-                        itemCount: state.quotes.length,
+                        itemCount: state.chairQuotes.length,
                         itemBuilder: (context, index) {
                           return OrderscreenItemWidget(
-                            quote: state.quotes[index],
+                            quote: state.chairQuotes[index],
                             onTapBidButton: () {
-                              onTapBidButton(context, state.quotes[index]);
+                              onTapBidButton(context, state.chairQuotes[index]);
                             },
                           );
                         });
@@ -78,7 +79,7 @@ class OrderScreenPageState extends State<OrderScreenFourPage>
                     return Text(
                         'There are not any orders of this category yet!');
                   }
-                } else if (state is QuoteErrorState) {
+                } else if (state is ChairQuoteErrorState) {
                   return Text('${state.error}');
                 } else {
                   return Container();
