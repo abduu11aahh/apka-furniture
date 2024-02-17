@@ -24,6 +24,8 @@ class BedQuoteErrorState extends QuoteBedState {
 
 class BedQuoteCubit extends Cubit<QuoteBedState> {
   BedQuoteCubit() : super(BedQuoteInitialState());
+  int currentPage = 2;
+  List<QuoteModel> totalQuotes = [];
 
   void getAllQuotes(String token) async {
     try {
@@ -47,13 +49,58 @@ class BedQuoteCubit extends Cubit<QuoteBedState> {
 
         List<QuoteModel> bedQuotes =
             bedQuotesJson.map((json) => QuoteModel.fromJson(json)).toList();
-
+        totalQuotes.addAll(bedQuotes);
         emit(BedQuoteSuccessState(bedQuotes));
       } else {
         emit(BedQuoteErrorState('${jsonDecode(response.body)['message']}'));
       }
     } catch (error) {
-      emit(BedQuoteErrorState('Error getting quotes: $error'));
+      emit(BedQuoteErrorState('Please Check you Internet Connection!'));
+    }
+  }
+
+  void getTenQuotes(String token) async {
+    try {
+      //emit(BedQuoteLoadingState());
+      String category = 'Bed';
+      final apiUrl =
+          'https://furniture-api-ceom.onrender.com/api/quote/gettenquotes?page=$currentPage&category=$category';
+      final response = await http.get(
+        Uri.parse(apiUrl),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      );
+      //print('responseeeeeeeddddddddd${jsonDecode(response.body)}');
+
+      if (response.statusCode == 200) {
+        final List<dynamic> quotesJson =
+            jsonDecode(response.body)['tenQuotesOfCategory'];
+
+        List<QuoteModel> bedQuotes =
+            quotesJson.map((json) => QuoteModel.fromJson(json)).toList();
+        print('responseeeeeeeeeeeeeeeee${bedQuotes.length}');
+
+        if (bedQuotes.isEmpty) {
+          // Consider it as reaching the maximum
+          print('Reached maximum number of items.');
+          print('totalquotessssssssssssssssssssss${totalQuotes.length}');
+          emit(BedQuoteSuccessState(totalQuotes));
+          return;
+        }
+        currentPage++;
+        totalQuotes.addAll(bedQuotes);
+        print('totalquotessssssssssssssssssssss${totalQuotes.length}');
+        emit(BedQuoteSuccessState(totalQuotes));
+      } else {
+        currentPage--;
+        emit(BedQuoteErrorState('${jsonDecode(response.body)['message']}'));
+      }
+    } catch (error) {
+      print(error);
+      currentPage--;
+      emit(BedQuoteErrorState('Please Check you Internet Connection!'));
     }
   }
 }

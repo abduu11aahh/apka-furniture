@@ -21,11 +21,32 @@ import 'package:Apka_Furniture/widgets/custom_elevated_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 // ignore_for_file: must_be_immutable
-class SellerHomeScreen extends StatelessWidget {
-  SellerHomeScreen({Key? key}) : super(key: key);
+
+class SellerHomeScreen extends StatefulWidget {
+  @override
+  _SellerHomeScreenState createState() => _SellerHomeScreenState();
+}
+
+class _SellerHomeScreenState extends State<SellerHomeScreen> {
+  //SellerHomeScreen({Key? key}) : super(key: key);
+  static bool _isInitialized = false;
+  @override
+  void initState() {
+    super.initState();
+    if (!_isInitialized) {
+      //context.read<ProductCubit>().fetchProducts();
+      String token = context.read<AuthCubit>().getToken();
+      // context.read<ProductCubit>().fetchProductsbySeller(token);
+      context.read<BedQuoteCubit>().getAllQuotes(token);
+      context.read<ChairQuoteCubit>().getAllQuotes(token);
+      context.read<TableQuoteCubit>().getAllQuotes(token);
+      context.read<OthersQuoteCubit>().getAllQuotes(token);
+      context.read<SofaQuoteCubit>().getAllQuotes(token);
+      _isInitialized = true;
+    }
+  }
 
   int sliderIndex = 1;
-
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   @override
@@ -37,13 +58,7 @@ class SellerHomeScreen extends StatelessWidget {
       Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
       name = decodedToken['name'];
     }
-
     context.read<ProductCubit>().fetchProductsbySeller(token);
-    context.read<BedQuoteCubit>().getAllQuotes(token);
-    context.read<ChairQuoteCubit>().getAllQuotes(token);
-    context.read<TableQuoteCubit>().getAllQuotes(token);
-    context.read<OthersQuoteCubit>().getAllQuotes(token);
-    context.read<SofaQuoteCubit>().getAllQuotes(token);
     return SafeArea(
         child: Scaffold(
       appBar: _buildAppBar(context, name),

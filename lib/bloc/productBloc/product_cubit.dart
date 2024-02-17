@@ -97,7 +97,7 @@ class ProductCubit extends Cubit<ProductState> {
             ProductSubmitErrorState('${jsonDecode(response.body)['message']}'));
       }
     } catch (error) {
-      emit(ProductSubmitErrorState(error.toString()));
+      emit(ProductSubmitErrorState('Please Check you Internet Connection!'));
     }
   }
 
@@ -168,7 +168,7 @@ class ProductCubit extends Cubit<ProductState> {
         emit(ProductFetchErrorState('${jsonDecode(response.body)['message']}'));
       }
     } catch (error) {
-      emit(ProductFetchErrorState(error.toString()));
+      emit(ProductFetchErrorState('Please Check you Internet Connection!'));
     }
   }
 
@@ -205,7 +205,7 @@ class ProductCubit extends Cubit<ProductState> {
         emit(ProductFetchErrorState('${jsonDecode(response.body)['message']}'));
       }
     } catch (error) {
-      emit(ProductFetchErrorState(error.toString()));
+      emit(ProductFetchErrorState('Please Check you Internet Connection!'));
     }
   }
 

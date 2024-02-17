@@ -24,7 +24,8 @@ class ChairQuoteErrorState extends QuoteChairState {
 
 class ChairQuoteCubit extends Cubit<QuoteChairState> {
   ChairQuoteCubit() : super(ChairQuoteInitialState());
-
+  List<QuoteModel> totalQuotes = [];
+  int currentPage = 2;
   void getAllQuotes(String token) async {
     try {
       emit(ChairQuoteLoadingState());
@@ -47,13 +48,58 @@ class ChairQuoteCubit extends Cubit<QuoteChairState> {
 
         List<QuoteModel> chairQuotes =
             chairQuotesJson.map((json) => QuoteModel.fromJson(json)).toList();
-
-        emit(ChairQuoteSuccessState(chairQuotes));
+        totalQuotes.addAll(chairQuotes);
+        emit(ChairQuoteSuccessState(totalQuotes));
       } else {
         emit(ChairQuoteErrorState('${jsonDecode(response.body)['message']}'));
       }
     } catch (error) {
-      emit(ChairQuoteErrorState('Error getting quotes: $error'));
+      emit(ChairQuoteErrorState('Please Check you Internet Connection!'));
+    }
+  }
+
+  void getTenQuotes(String token) async {
+    try {
+      //emit(BedQuoteLoadingState());
+      String category = 'Chair';
+      final apiUrl =
+          'https://furniture-api-ceom.onrender.com/api/quote/gettenquotes?page=$currentPage&category=$category';
+      final response = await http.get(
+        Uri.parse(apiUrl),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      );
+      //print('responseeeeeeeddddddddd${jsonDecode(response.body)}');
+
+      if (response.statusCode == 200) {
+        final List<dynamic> quotesJson =
+            jsonDecode(response.body)['tenQuotesOfCategory'];
+
+        List<QuoteModel> bedQuotes =
+            quotesJson.map((json) => QuoteModel.fromJson(json)).toList();
+        print('responseeeeeeeeeeeeeeeee${bedQuotes.length}');
+
+        if (bedQuotes.isEmpty) {
+          // Consider it as reaching the maximum
+          print('Reached maximum number of items.');
+          print('totalquotessssssssssssssssssssss${totalQuotes.length}');
+          emit(ChairQuoteSuccessState(totalQuotes));
+          return;
+        }
+        currentPage++;
+        totalQuotes.addAll(bedQuotes);
+        print('totalquotessssssssssssssssssssss${totalQuotes.length}');
+        emit(ChairQuoteSuccessState(totalQuotes));
+      } else {
+        currentPage--;
+        emit(ChairQuoteErrorState('${jsonDecode(response.body)['message']}'));
+      }
+    } catch (error) {
+      print(error);
+      currentPage--;
+      emit(ChairQuoteErrorState('Please Check you Internet Connection!'));
     }
   }
 }

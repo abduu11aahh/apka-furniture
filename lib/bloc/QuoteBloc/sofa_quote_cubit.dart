@@ -24,7 +24,8 @@ class SofaQuoteErrorState extends QuoteSofaState {
 
 class SofaQuoteCubit extends Cubit<QuoteSofaState> {
   SofaQuoteCubit() : super(SofaQuoteInitialState());
-
+  List<QuoteModel> totalQuotes = [];
+  int currentPage = 2;
   void getAllQuotes(String token) async {
     try {
       emit(SofaQuoteLoadingState());
@@ -47,13 +48,58 @@ class SofaQuoteCubit extends Cubit<QuoteSofaState> {
 
         List<QuoteModel> sofaQuotes =
             sofaQuotesJson.map((json) => QuoteModel.fromJson(json)).toList();
-
-        emit(SofaQuoteSuccessState(sofaQuotes));
+        totalQuotes.addAll(sofaQuotes);
+        emit(SofaQuoteSuccessState(totalQuotes));
       } else {
         emit(SofaQuoteErrorState('${jsonDecode(response.body)['message']}'));
       }
     } catch (error) {
-      emit(SofaQuoteErrorState('Error getting quotes: $error'));
+      emit(SofaQuoteErrorState('Please Check you Internet Connection!'));
+    }
+  }
+
+  void getTenQuotes(String token) async {
+    try {
+      //emit(BedQuoteLoadingState());
+      String category = 'Sofa';
+      final apiUrl =
+          'https://furniture-api-ceom.onrender.com/api/quote/gettenquotes?page=$currentPage&category=$category';
+      final response = await http.get(
+        Uri.parse(apiUrl),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      );
+      //print('responseeeeeeeddddddddd${jsonDecode(response.body)}');
+
+      if (response.statusCode == 200) {
+        final List<dynamic> quotesJson =
+            jsonDecode(response.body)['tenQuotesOfCategory'];
+
+        List<QuoteModel> bedQuotes =
+            quotesJson.map((json) => QuoteModel.fromJson(json)).toList();
+        print('responseeeeeeeeeeeeeeeee${bedQuotes.length}');
+
+        if (bedQuotes.isEmpty) {
+          // Consider it as reaching the maximum
+          print('Reached maximum number of items.');
+          print('totalquotessssssssssssssssssssss${totalQuotes.length}');
+          emit(SofaQuoteSuccessState(totalQuotes));
+          return;
+        }
+        currentPage++;
+        totalQuotes.addAll(bedQuotes);
+        print('totalquotessssssssssssssssssssss${totalQuotes.length}');
+        emit(SofaQuoteSuccessState(totalQuotes));
+      } else {
+        currentPage--;
+        emit(SofaQuoteErrorState('${jsonDecode(response.body)['message']}'));
+      }
+    } catch (error) {
+      print(error);
+      currentPage--;
+      emit(SofaQuoteErrorState('Please Check you Internet Connection!'));
     }
   }
 }

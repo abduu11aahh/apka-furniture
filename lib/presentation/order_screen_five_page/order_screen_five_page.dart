@@ -4,6 +4,7 @@ import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
 import 'package:Apka_Furniture/bloc/QuoteBloc/quote_cubit.dart';
 import 'package:Apka_Furniture/bloc/QuoteBloc/quote_state.dart';
 import 'package:Apka_Furniture/data/models/quote_model.dart';
+import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
 import '../order_screen_five_page/widgets/orderscreen_item_widget.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,14 @@ class OrderScreenPageState extends State<OrderScreenFivePage>
     with AutomaticKeepAliveClientMixin<OrderScreenFivePage> {
   @override
   bool get wantKeepAlive => true;
+  final ScrollController _scrollController = ScrollController();
+  bool _showTopButton = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_handleScroll);
+  }
   //  @override
   // void initState() {
   //   super.initState();
@@ -35,58 +44,103 @@ class OrderScreenPageState extends State<OrderScreenFivePage>
     mediaQueryData = MediaQuery.of(context);
     return SafeArea(
         child: Scaffold(
-            body: Container(
-                width: double.maxFinite,
-                decoration: AppDecoration.fillWhiteA,
-                child: Column(children: [
-                  SizedBox(height: 20.v),
-                  BlocBuilder<OthersQuoteCubit, QuoteOthersState>(
-                    builder: (context, state) {
-                      if (state is OthersQuoteLoadingState) {
-                        return CircularProgressIndicator();
-                      }
-                      return _buildOrderScreen(context);
-                    },
-                  )
-                ]))));
+      body: Container(
+          width: double.maxFinite,
+          decoration: AppDecoration.fillWhiteA,
+          child: Column(children: [
+            SizedBox(height: 20.v),
+            BlocBuilder<OthersQuoteCubit, QuoteOthersState>(
+              builder: (context, state) {
+                if (state is OthersQuoteLoadingState) {
+                  return CircularProgressIndicator();
+                }
+                return _buildOrderScreen(context);
+              },
+            )
+          ])),
+      floatingActionButton: _showTopButton
+          ? FloatingActionButton(
+              onPressed: _scrollToTop,
+              child: Padding(
+                  padding: EdgeInsets.only(bottom: 5.v),
+                  child: Icon(Icons.arrow_upward, color: Colors.white)),
+            )
+          : null,
+    ));
   }
 
   /// Section Widget
   Widget _buildOrderScreen(BuildContext context) {
+    String token = context.read<AuthCubit>().getToken();
     return Expanded(
         child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.h),
             child: BlocBuilder<OthersQuoteCubit, QuoteOthersState>(
               builder: (context, state) {
                 if (state is OthersQuoteSuccessState) {
-                  if (state.othersQuotes.length > 0) {
-                    return ListView.separated(
-                        physics: BouncingScrollPhysics(),
-                        shrinkWrap: true,
-                        separatorBuilder: (context, index) {
-                          return SizedBox(height: 15.v);
-                        },
-                        itemCount: state.othersQuotes.length,
-                        itemBuilder: (context, index) {
-                          return OrderscreenItemWidget(
-                            quote: state.othersQuotes[index],
-                            onTapBidButton: () {
-                              onTapBidButton(
-                                  context, state.othersQuotes[index]);
+                  return LazyLoadScrollView(
+                    onEndOfPage: () {
+                      context.read<OthersQuoteCubit>().getTenQuotes(token);
+                    },
+                    scrollOffset: 70,
+                    child: state.othersQuotes.length > 0
+                        ? ListView.separated(
+                            controller: _scrollController,
+                            physics: BouncingScrollPhysics(),
+                            shrinkWrap: true,
+                            separatorBuilder: (context, index) {
+                              return SizedBox(height: 15.v);
                             },
-                          );
-                        });
-                  } else {
-                    return Text(
-                        'There are not any orders of this category yet!');
-                  }
+                            itemCount: state.othersQuotes.length,
+                            itemBuilder: (context, index) {
+                              return OrderscreenItemWidget(
+                                quote: state.othersQuotes[index],
+                                onTapBidButton: () {
+                                  onTapBidButton(
+                                      context, state.othersQuotes[index]);
+                                },
+                              );
+                            },
+                          )
+                        : Text(
+                            'There are not any orders of this category yet!'),
+                  );
                 } else if (state is OthersQuoteErrorState) {
                   return Text('${state.error}');
+                } else if (state is OthersQuoteLoadingState) {
+                  return Center(child: CircularProgressIndicator());
                 } else {
-                  return Container();
+                  return Container(child: Text('kksks'));
                 }
               },
             )));
+  }
+
+  void _handleScroll() {
+    if (_scrollController.offset >= 100 && !_showTopButton) {
+      //print('helllloooooooooo');
+      setState(() {
+        _showTopButton = true;
+      });
+    } else if (_scrollController.offset < 100 && _showTopButton) {
+      setState(() {
+        _showTopButton = false;
+      });
+    }
+  }
+
+  void _scrollToTop() {
+    _scrollController.animateTo(
+      0,
+      duration: Duration(milliseconds: 700),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   /// Displays a dialog with the [OrderScreenTwoDialog] content.

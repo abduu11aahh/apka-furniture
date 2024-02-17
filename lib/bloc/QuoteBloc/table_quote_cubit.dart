@@ -24,7 +24,8 @@ class TableQuoteErrorState extends QuoteTableState {
 
 class TableQuoteCubit extends Cubit<QuoteTableState> {
   TableQuoteCubit() : super(TableQuoteInitialState());
-
+  List<QuoteModel> totalQuotes = [];
+  int currentPage = 2;
   void getAllQuotes(String token) async {
     try {
       emit(TableQuoteLoadingState());
@@ -45,15 +46,60 @@ class TableQuoteCubit extends Cubit<QuoteTableState> {
                 .expand((obj) => (obj['Table'] as List<dynamic>?) ?? [])
                 .toList();
 
-        List<QuoteModel> TableQuotes =
+        List<QuoteModel> tableQuotes =
             tableQuotesJson.map((json) => QuoteModel.fromJson(json)).toList();
-
-        emit(TableQuoteSuccessState(TableQuotes));
+        totalQuotes.addAll(tableQuotes);
+        emit(TableQuoteSuccessState(totalQuotes));
       } else {
         emit(TableQuoteErrorState('${jsonDecode(response.body)['message']}'));
       }
     } catch (error) {
-      emit(TableQuoteErrorState('Error getting quotes: $error'));
+      emit(TableQuoteErrorState('Please Check you Internet Connection!'));
+    }
+  }
+
+  void getTenQuotes(String token) async {
+    try {
+      //emit(BedQuoteLoadingState());
+      String category = 'Table';
+      final apiUrl =
+          'https://furniture-api-ceom.onrender.com/api/quote/gettenquotes?page=$currentPage&category=$category';
+      final response = await http.get(
+        Uri.parse(apiUrl),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      );
+      //print('responseeeeeeeddddddddd${jsonDecode(response.body)}');
+
+      if (response.statusCode == 200) {
+        final List<dynamic> quotesJson =
+            jsonDecode(response.body)['tenQuotesOfCategory'];
+
+        List<QuoteModel> bedQuotes =
+            quotesJson.map((json) => QuoteModel.fromJson(json)).toList();
+        print('responseeeeeeeeeeeeeeeee${bedQuotes.length}');
+
+        if (bedQuotes.isEmpty) {
+          // Consider it as reaching the maximum
+          print('Reached maximum number of items.');
+          print('totalquotessssssssssssssssssssss${totalQuotes.length}');
+          emit(TableQuoteSuccessState(totalQuotes));
+          return;
+        }
+        currentPage++;
+        totalQuotes.addAll(bedQuotes);
+        print('totalquotessssssssssssssssssssss${totalQuotes.length}');
+        emit(TableQuoteSuccessState(totalQuotes));
+      } else {
+        currentPage--;
+        emit(TableQuoteErrorState('${jsonDecode(response.body)['message']}'));
+      }
+    } catch (error) {
+      print(error);
+      currentPage--;
+      emit(TableQuoteErrorState('Please Check you Internet Connection!'));
     }
   }
 }
