@@ -28,6 +28,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
 var navigatorKey = GlobalKey<NavigatorState>();
+bool globalIsPreviousBuyerNewItemScreen = false;
 FirebaseMessaging messaging = FirebaseMessaging.instance;
 
 void main() async {

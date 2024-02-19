@@ -30,7 +30,7 @@ class TableQuoteCubit extends Cubit<QuoteTableState> {
     try {
       emit(TableQuoteLoadingState());
       final apiUrl =
-          'https://furniture-api-ceom.onrender.com/api/quote//getallquotes';
+          'https://furniture-api-ceom.onrender.com/api/quote/getallquotes';
       final response = await http.get(
         Uri.parse(apiUrl),
         headers: {

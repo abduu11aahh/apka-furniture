@@ -1,3 +1,4 @@
+import 'package:Apka_Furniture/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Apka_Furniture/bloc/AuthBloc/auth_cubit.dart';
@@ -113,18 +114,39 @@ class LoginScreen extends StatelessWidget {
                     BlocConsumer<AuthCubit, AuthState>(
                       listener: (context, state) {
                         if (state is AuthLoggedInState) {
-                          Navigator.popUntil(context, (route) => route.isFirst);
+                          //go to same create new item screen if login
+                          // NavigatorState? previousNavigator = Navigator.of(context).previousNavigator;
+                          // bool isPreviusNewItemScreen =
+                          //     ModalRoute.of(context)!.settings.name ==
+                          //         AppRoutes.buyerCreatingNewItemScreen;
+
                           String token = state.token;
                           Map<String, dynamic> decodedToken =
                               JwtDecoder.decode(token);
                           if (decodedToken['role'] == 'buyer') {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CustomBottomAppBar(),
-                              ),
-                            );
+                            //if previous page is create new item go to same previous page
+                            if (globalIsPreviousBuyerNewItemScreen) {
+                              Navigator.popUntil(
+                                  context,
+                                  ModalRoute.withName(
+                                      AppRoutes.buyerCreatingNewItemScreen));
+                              //Navigator.pop(context);
+                              //print('hello 1');
+                              globalIsPreviousBuyerNewItemScreen = false;
+                            } else {
+                              //print('hello 2');
+                              Navigator.popUntil(
+                                  context, (route) => route.isFirst);
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CustomBottomAppBar(),
+                                ),
+                              );
+                            }
                           } else {
+                            Navigator.popUntil(
+                                context, (route) => route.isFirst);
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(

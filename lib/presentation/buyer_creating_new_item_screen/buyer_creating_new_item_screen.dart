@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'dart:io';
+import 'package:Apka_Furniture/main.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -613,57 +614,61 @@ class _BuyerCreatingNewItemScreenState
   /// Navigates to the userHomeScreen when the action is triggered.
   onTapUpload(BuildContext context, {ProductModel? product}) {
     String token = context.read<AuthCubit>().getToken();
-    if (token != '') {
-      final state = context.read<ProductCubit>().state;
-      bool call;
-      if (product == null) {
-        call = selectedCategory != '' &&
-            itemDetailController.text != '' &&
-            itemTitleController.text != '' &&
-            (state is ImagesSelectedState);
-      } else {
-        context.read<ProductCubit>().selectedStringImages = product.images;
-        call = selectedCategory != '' &&
-            itemDetailController.text != '' &&
-            itemTitleController.text != '';
-      }
 
-      if (call) {
-        context.read<ProductCubit>().title =
-            itemTitleController.text.toString();
-        context.read<ProductCubit>().details =
-            itemDetailController.text.toString();
-        context.read<ProductCubit>().category = selectedCategory;
-        String token = context.read<AuthCubit>().getToken();
+    final state = context.read<ProductCubit>().state;
+    bool call;
+    if (product == null) {
+      call = selectedCategory != '' &&
+          itemDetailController.text != '' &&
+          itemTitleController.text != '' &&
+          (state is ImagesSelectedState);
+    } else {
+      context.read<ProductCubit>().selectedStringImages = product.images;
+      call = selectedCategory != '' &&
+          itemDetailController.text != '' &&
+          itemTitleController.text != '';
+    }
+
+    if (call) {
+      context.read<ProductCubit>().title = itemTitleController.text.toString();
+      context.read<ProductCubit>().details =
+          itemDetailController.text.toString();
+      context.read<ProductCubit>().category = selectedCategory;
+      //String token = context.read<AuthCubit>().getToken();
+      //if token available or not
+      if (token != '') {
         context.read<ProductCubit>().submitProduct(token);
       } else {
-        String snackBarContent = '';
-        if (selectedCategory == '') {
-          snackBarContent = 'Please select the category!';
-        } else if (itemTitleController.text == '') {
-          snackBarContent = 'Please fill the title of the product!';
-        } else if (itemDetailController.text == '') {
-          snackBarContent = 'Please fill the details of the product!';
-        } else {
-          snackBarContent = 'Please upload images for the product!';
-        }
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('$snackBarContent'),
-          ),
-        );
+        globalIsPreviousBuyerNewItemScreen = true;
+        showDialog(
+            context: context,
+            builder: (_) => AlertDialog(
+                  content: CartScreenDialog(),
+                  backgroundColor: Colors.transparent,
+                  contentPadding: EdgeInsets.zero,
+                  insetPadding: const EdgeInsets.only(left: 0),
+                ));
       }
-      //context.read<CartCubit>().addQuote(token);
+      //context.read<ProductCubit>().submitProduct(token);
     } else {
-      showDialog(
-          context: context,
-          builder: (_) => AlertDialog(
-                content: CartScreenDialog(),
-                backgroundColor: Colors.transparent,
-                contentPadding: EdgeInsets.zero,
-                insetPadding: const EdgeInsets.only(left: 0),
-              ));
+      String snackBarContent = '';
+      if (selectedCategory == '') {
+        snackBarContent = 'Please select the category!';
+      } else if (itemTitleController.text == '') {
+        snackBarContent = 'Please fill the title of the product!';
+      } else if (itemDetailController.text == '') {
+        snackBarContent = 'Please fill the details of the product!';
+      } else {
+        snackBarContent = 'Please upload images for the product!';
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('$snackBarContent'),
+        ),
+      );
     }
+    //context.read<CartCubit>().addQuote(token);
+
     // final state = context.read<ProductCubit>().state;
     // if (selectedCategory != '' &&
     //     itemDetailController.text != '' &&
